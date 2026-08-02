@@ -1,5 +1,7 @@
 # Guided Pipeline
 
+**Turns "trust me, it's done" into "here's exactly what happened."**
+
 **Makes AI outputs usable by humans, not just technically correct.**
 
 ## The problem
