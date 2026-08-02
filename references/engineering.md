@@ -7,7 +7,7 @@ reasoning behind the Status Report's "Validation" field.
 
 ## Validation gates, not just task breakdown
 
-A step isn't done because it ran without throwing an error — it's done when
+A step isn't done because it ran without throwing an error. It's done when
 its output has been checked against a definition of "correct" that was
 written *before* the step ran. Write the definition of done first; vague
 definitions produce vague validation, which produces vague status reports.
@@ -19,7 +19,7 @@ guidance in SKILL.md.
 
 Something will eventually fail. The difference between a good pipeline and a
 fragile one is what happens next: does it explain what broke and offer a path
-forward, or does it just stop — or worse, continue silently in a broken
+forward, or does it just stop, or worse, continue silently in a broken
 state? Build the failure path with as much care as the happy path: likely
 cause, proposed fix or rollback, and never a bare stack trace standing in for
 an explanation.

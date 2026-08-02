@@ -8,8 +8,8 @@ surfacing progress and improvement, not just activity.
 ## Success metrics / definition of done
 
 Users need to know not just "what happened" but "are we making progress, and
-toward what." Where a pipeline has a measurable goal — time saved, tasks
-completed, error rate, anything countable — surface it in status reports so
+toward what." Where a pipeline has a measurable goal (time saved, tasks
+completed, error rate, anything countable), surface it in status reports so
 effort is visibly turning into outcomes, not just motion.
 
 Maps to: an optional addition to the "What it means" field when a pipeline
@@ -18,7 +18,7 @@ has a running metric worth tracking.
 ## Feedback loops
 
 A pipeline that runs the same way forever doesn't improve. Where possible,
-capture what worked and what didn't, and let that inform the next run — even
+capture what worked and what didn't, and let that inform the next run, even
 if that's as simple as noting recurring failure points so they're visible
 across runs, not just within one.
 

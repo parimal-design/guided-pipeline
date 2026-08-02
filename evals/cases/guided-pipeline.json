@@ -1,0 +1,58 @@
+{
+  "skill_name": "guided-pipeline",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "Build a multi-step onboarding flow for new hires, with a checkpoint after each stage.",
+        "top_k": 3
+      },
+      {
+        "prompt": "I don't know where to start with this half-finished migration script. What do I do next?",
+        "top_k": 3
+      },
+      {
+        "prompt": "Design an agent workflow that breaks the report into phases and hands off between them.",
+        "top_k": 3
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "Rename this variable from `usr` to `user` in one file.",
+        "reason": "Single-step task with no follow-on action: nothing to report a trajectory against."
+      },
+      {
+        "prompt": "What's the time complexity of this sorting function?",
+        "reason": "A one-off question with no pipeline, steps, or human follow-on action to guide."
+      }
+    ]
+  },
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Turn my rough notes into a five-section outline, then write the full draft once I approve it.",
+      "expected_output": "A Status Report shown after the outline step, before the draft step begins, with all four fields filled in",
+      "files": [
+        "guided-pipeline"
+      ],
+      "expectations": [
+        "A Status Report is produced immediately after the outline step completes, not deferred to the end",
+        "The report states what just happened, what it means, what's next, and how it was validated",
+        "The next step (writing the draft) does not start until the human responds, since Manual is the default mode"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Run this six-step deployment pipeline in Autopilot mode, then tell me how it went.",
+      "expected_output": "All six steps run unattended with per-step reports logged for the trail, one consolidated final report, and exactly one Gut Check comparing the whole run against the original deployment goal",
+      "files": [
+        "guided-pipeline"
+      ],
+      "expectations": [
+        "No approval pauses occur between steps, since Autopilot was explicitly chosen",
+        "The final report bundles every step's result rather than showing them one at a time",
+        "Gut Check runs exactly once, at the end, comparing the full trajectory to the original goal stated at the start, not comparing against the most recent step",
+        "Any destructive or hard-to-reverse step along the way is flagged explicitly in the final report, not buried"
+      ]
+    }
+  ]
+}
