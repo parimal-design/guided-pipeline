@@ -1,11 +1,11 @@
 # Guided Pipeline
 
-**An Agent Skill that makes AI-built pipelines usable by the human running them.**
+**An Agent Skill that makes AI-built pipelines usable by the human running them. Your engineering, product, and design partners, bundled into one skill.**
 
 ## The problem
 
 You ask an AI to build you a system. It does — breaks the work into tasks,
-validates each one, executes end to end. Technically great. Then you open the
+validates each one, executes end-to-end. Technically great. Then you open the
 project the next day and have no idea what's done, what's next, or where to
 even start. The only way to find out is to read every file the AI created.
 
