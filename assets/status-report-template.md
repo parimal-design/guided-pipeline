@@ -23,6 +23,18 @@ step actually is.]
 
 ---
 
+## Gut Check — end-of-pipeline / final report only
+
+Not part of the per-step Status Report above. Run once, at the very end of
+the pipeline (or right before Autopilot's consolidated report), comparing
+the entire trajectory against the original goal — not the most recent step.
+
+**Gut Check (end of pipeline):**
+[✅ On track — the pipeline still serves the original goal: <one-line goal restated>]
+[⚠️ Drift detected — <what changed vs. the original goal, plainly stated. No proposed fix — flagging for you to decide.>]
+
+---
+
 ### Example (filled in)
 
 ## Status Report — Step 2: Draft outline generated
@@ -44,3 +56,11 @@ Review the outline. Say the word and I'll write the full draft.
 **Gate (current mode: Manual):**
 Waiting for your word before starting the full draft — easier to redirect now
 than after a full draft exists.
+
+### Example — Gut Check with drift detected
+
+**Gut Check (end of pipeline):**
+⚠️ Drift detected — you originally asked for a 500-word blog post outline;
+across the last three steps this grew into a 2,000-word draft with two extra
+sections you didn't ask for. Not proposing a fix — flagging it so you can
+decide whether to trim it back or keep the expanded scope.

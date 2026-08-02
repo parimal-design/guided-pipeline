@@ -1,6 +1,6 @@
 # Guided Pipeline
 
-**An Agent Skill that makes AI-built pipelines usable by the human running them. Your engineering, product, and design partners, bundled into one skill.**
+**Turns "trust me, it's done" into "here's exactly what happened."**
 
 ## The problem
 
@@ -33,17 +33,11 @@ You choose how much oversight you want, and can change it any time mid-pipeline:
 Just say "switch to autopilot," "only ask me about the big stuff," or "back to
 manual" at any point.
 
-## Why this isn't just "another Claude.md"
-
-Most AI-behavior skill packs (rightly) focus on making the AI write better
-code — clearer assumptions, less overengineering, tighter loops. This skill is
-about something adjacent but different: making the *output of any pipeline
-legible to the human running it*, built on three of Nielsen's usability
-heuristics (visibility of system status, match between system and the real
-world, user control and freedom) plus engineering-grade validation gates and
-product-grade success metrics. See `references/usability.md`,
-`references/engineering.md`, and `references/product.md` for the full
-reasoning behind each.
+At the very end of a pipeline, it also runs a **Gut Check** — in plain
+language, it gut-checks the whole output against what you originally asked
+for, not just the last step. This is global, not per-step: it runs once,
+comparing the entire run against your original goal, so gradual drift gets
+flagged instead of buried under a pile of individually fine-looking steps.
 
 ## Install
 
@@ -75,13 +69,22 @@ Next: Review the outline — say the word and I'll write the full draft.
    step starts. Switch to Balanced or Autopilot any time by just saying so.
 4. That's it — no configuration needed.
 
+## Why this isn't just "another Claude.md"
+
+Most AI-behavior skill packs (rightly) focus on making the AI write better
+code — clearer assumptions, less overengineering, tighter loops. This skill is
+about something adjacent but different: making the *output of any pipeline
+legible to the human running it*, grounded in usability, engineering, and
+product thinking. Full reasoning behind each in `references/usability.md`,
+`references/engineering.md`, and `references/product.md`.
+
 ## Files
 
-- `SKILL.md` — the skill itself
+- `SKILL.md` — the skill itself (Status Report format, Modes, Gut Check)
 - `references/usability.md` — the usability lens (legibility, translation, control)
 - `references/engineering.md` — the engineering lens (validation, failure handling)
 - `references/product.md` — the product lens (success metrics, feedback loops)
-- `assets/status-report-template.md` — the template every step's report follows
+- `assets/status-report-template.md` — the template every step's report follows, including the end-of-pipeline Gut Check block
 
 ## License
 
