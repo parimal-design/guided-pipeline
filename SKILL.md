@@ -70,26 +70,32 @@ spending money, or any step whose output the next several steps build on
 heavily. Everything else — drafting, generating a first pass, running a
 read-only check — is cheap.
 
-## Why these four (the three lenses behind the skill)
+## Gut Check: does the pipeline still serve the original goal?
 
-The Status Report's four fields aren't arbitrary — each one is where a
-specific lens on the pipeline shows up in what the human actually sees.
-Three lenses, each documented in full in its own reference file:
+The per-step Validation field only checks one thing: did *this step* execute
+correctly. Gut Check asks a different question, at a different altitude:
+does the pipeline *as a whole*, across every step so far, still serve the
+original goal — or did it quietly drift?
 
-- **`references/usability.md`** — makes state legible: what happened, what it
-  means, and how much oversight the human wants (the Modes system). Behind
-  the "What just happened," "What it means," and "Gate" fields.
-- **`references/engineering.md`** — makes correctness checkable: a definition
-  of done per step, a real validation gate, and a graceful failure path.
-  Behind the "Validation" field.
-- **`references/product.md`** — makes progress visible: success metrics and
-  what's been learned across runs. Behind metric mentions in "What it means"
-  and the Autopilot summary report.
-
-Read whichever reference file is relevant to what you're currently doing —
-designing the report format, or debugging why a validation gate keeps
-failing, or deciding what to measure. They're peers; none is a prerequisite
-for the others, but together they're what the four fields are built from.
+- **Scope: global, not per-step.** Compare the entire trajectory against a
+  fixed reference point captured at the start of the pipeline — the original
+  ask/goal — never against just the most recent step. Checking against the
+  last step only perpetuates drift that's already happened; the original
+  goal is the only stable yardstick.
+- **Timing: once, at the very end.** Run it right before the pipeline's
+  final report, or right before Autopilot's consolidated report — not after
+  every step. This is a deliberately expensive, big-picture check, not
+  something to run at step granularity.
+- **On drift: flag it, then stop.** State plainly what changed relative to
+  the original goal. Do not auto-correct, auto-rewind, or propose a specific
+  fix — Gut Check is purely observational. The human decides whether to
+  rewind, adjust course, or continue anyway.
+- **It's a peer to Modes, not a fourth lens.** Modes control how much the
+  human wants to approve; Gut Check controls whether the destination is
+  still right. Both are pipeline-level concerns, not per-step fields — which
+  is why Gut Check doesn't map onto the usability/engineering/product lenses
+  below the way the four Status Report fields do. See the template's "Gut
+  Check" block for the report format.
 
 ## Structuring the pipeline itself
 
@@ -119,6 +125,33 @@ Before calling any step "complete":
 - [ ] If failed: cause + proposed fix included, not just the error
 - [ ] Gate respected for the active mode (Manual: waited; Balanced: waited only
       if consequential; Autopilot: logged for the final report)
+- [ ] Gut Check run at pipeline end (or before Autopilot's final report),
+      result stated plainly
+
+## Why these four (the three lenses behind the skill)
+
+If you want the reasoning behind why the Status Report has these four
+fields, not just what they are, read on — none of this is required to use
+the skill day to day. Each field is where a specific lens on the pipeline
+shows up in what the human actually sees. Three lenses, each documented in
+full in its own reference file:
+
+- **`references/usability.md`** — makes state legible: what happened, what it
+  means, and how much oversight the human wants (the Modes system). Behind
+  the "What just happened," "What it means," and "Gate" fields.
+- **`references/engineering.md`** — makes correctness checkable: a definition
+  of done per step, a real validation gate, and a graceful failure path.
+  Behind the "Validation" field.
+- **`references/product.md`** — makes progress visible: success metrics and
+  what's been learned across runs. Behind metric mentions in "What it means"
+  and the Autopilot summary report.
+
+Read whichever reference file is relevant to what you're currently doing —
+designing the report format, or debugging why a validation gate keeps
+failing, or deciding what to measure. They're peers; none is a prerequisite
+for the others, but together they're what the four fields are built from.
+Gut Check (above) is deliberately not part of this set — it checks
+direction, not execution.
 
 ## Reference files
 
