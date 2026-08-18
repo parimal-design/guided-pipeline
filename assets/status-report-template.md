@@ -1,5 +1,10 @@
 ## Status Report: Step [N], [step name]
 
+**Goal anchor (Step 1 only):**
+[Quote the human's original ask verbatim here, once, in the first Status Report
+of the pipeline. This is what Gut Check compares against at the end — omit
+this field on every step after Step 1.]
+
 **What just happened:**
 [Plain-language description. No file paths, function names, or jargon unless the
 user is technical and it's genuinely the clearest way to say it.]
@@ -36,6 +41,29 @@ the entire trajectory against the original goal, not the most recent step.
 ---
 
 ### Example (filled in)
+
+## Status Report: Step 1, Notes collected
+
+**Goal anchor (Step 1 only):**
+"Turn my rough notes into a five-section outline, then write the full draft
+once I approve it."
+
+**What just happened:**
+I read through your notes and grouped them into five candidate sections.
+
+**What it means:**
+Nothing to react to yet, this just sets up the outline in the next step.
+
+**Validation:**
+✅ Passed: every note you gave me is accounted for in one of the five groups.
+
+**What's next:**
+Generate the actual outline from these groups.
+
+**Gate (current mode: Manual):**
+Waiting for your word before starting the outline.
+
+### Example (filled in, later step, no goal anchor)
 
 ## Status Report: Step 2, Draft outline generated
 
