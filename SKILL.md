@@ -65,6 +65,12 @@ Three modes:
    covering every step, every validation result, and anything that failed.
    Per-step Status Reports still get written along the way (for the trail),
    they just aren't shown one at a time; they're bundled into the final report.
+   For long pipelines (roughly 8+ steps), don't just concatenate every
+   per-step report verbatim: summarize by exception. Lead the final report
+   with failures, drift, and flagged destructive/consequential steps, then
+   compress the remaining passing steps into a short list. A wall of "step
+   N passed" repeated eight times defeats the same legibility goal this
+   skill exists for.
 
 **Default is Manual.** Switch modes any time the human says so: "switch to
 autopilot," "just approve the big stuff," "back to manual," and the new mode
@@ -84,6 +90,11 @@ externally, spending money, or any step whose output the next several steps
 build on heavily. Everything else (drafting, generating a first pass,
 running a read-only check) is cheap.
 
+Concrete examples, when in doubt: cheap = writing a draft, running a lint or
+read-only check, creating scratch/throwaway files. Consequential = deleting
+or overwriting a real file, pushing/publishing anything, sending an external
+message, spending money, or a step the next several steps depend on heavily.
+
 ### 4. Run Gut Check once, at the end
 
 The per-step Validation field only checks one thing: did *this step* execute
@@ -91,11 +102,16 @@ correctly. Gut Check asks a different question, at a different altitude:
 does the pipeline *as a whole*, across every step so far, still serve the
 original goal, or did it quietly drift?
 
-- **Scope: global, not per-step.** Compare the entire trajectory against a
-  fixed reference point captured at the start of the pipeline (the original
-  ask/goal), never against just the most recent step. Checking against the
-  last step only perpetuates drift that's already happened; the original
-  goal is the only stable yardstick.
+- **Anchor the goal in writing, at step 1.** Quote the human's original
+  ask verbatim in the very first Status Report of the pipeline (see the
+  template's "Goal anchor" field). Don't rely on holding it in memory
+  across a long or context-compressed session — a remembered paraphrase of
+  the goal can itself drift, which quietly breaks Gut Check's whole premise.
+  Gut Check compares against this written anchor, not a recalled summary.
+- **Scope: global, not per-step.** Compare the entire trajectory against the
+  fixed, written anchor from step 1, never against just the most recent
+  step. Checking against the last step only perpetuates drift that's
+  already happened; the original goal is the only stable yardstick.
 - **Timing: once, at the very end.** Run it right before the pipeline's
   final report, or right before Autopilot's consolidated report, not after
   every step. This is a deliberately expensive, big-picture check, not
@@ -158,6 +174,8 @@ Before calling any step "complete":
 - [ ] If failed: cause + proposed fix included, not just the error
 - [ ] Gate respected for the active mode (Manual: waited; Balanced: waited only
       if consequential; Autopilot: logged for the final report)
+- [ ] Goal anchor was written verbatim in Step 1's Status Report (so Gut
+      Check has a fixed written reference, not a recalled paraphrase)
 - [ ] Gut Check run at pipeline end (or before Autopilot's final report),
       result stated plainly
 
