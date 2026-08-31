@@ -13,6 +13,11 @@
       {
         "prompt": "Design an agent workflow that breaks the report into phases and hands off between them.",
         "top_k": 3
+      },
+      {
+        "prompt": "Add a database migration, then run it against staging so I can check the data before we touch production.",
+        "top_k": 3,
+        "reason": "Two steps, but the human must react to the staging result before anything unsafe (production) can follow: meets the two-step exception to the trigger floor."
       }
     ],
     "negative": [
@@ -23,6 +28,14 @@
       {
         "prompt": "What's the time complexity of this sorting function?",
         "reason": "A one-off question with no pipeline, steps, or human follow-on action to guide."
+      },
+      {
+        "prompt": "Fix this typo, then run the linter to confirm it's clean.",
+        "reason": "Two steps, but the second is a trivial confirmation the human doesn't need to react to before anything else happens: no real trajectory to report."
+      },
+      {
+        "prompt": "Add a config flag, then update the doc to mention it.",
+        "reason": "Two steps, second is a quick mechanical follow-on with nothing for the human to react to in between: below the trigger floor."
       }
     ]
   },

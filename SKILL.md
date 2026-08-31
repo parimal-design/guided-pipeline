@@ -1,6 +1,6 @@
 ---
 name: guided-pipeline
-description: Use this skill whenever you are building, running, or documenting a multi-step process, pipeline, agent workflow, or task breakdown that a HUMAN needs to follow, not just an AI executing silently. Guarantees that after every single step, the human is told what just happened, what it means in plain language, and exactly what to do next. Trigger this any time a task has more than one step, any time you're designing a system with phases/stages/checkpoints, any time the user asks "what do I do next," "how do I use this," or "I don't know where to start," and any time you notice you've built something technically correct but confusing to navigate. Do NOT use for single-step tasks with no follow-on action.
+description: Use this skill whenever you are building, running, or documenting a multi-step process, pipeline, agent workflow, or task breakdown that a HUMAN needs to follow, not just an AI executing silently. Guarantees that after every single step, the human is told what just happened, what it means in plain language, and exactly what to do next. Trigger this any time a task has three or more steps, any time a two-step task has a step whose output the human must react to before the next step can safely run, any time you're designing a system with phases/stages/checkpoints, any time the user asks "what do I do next," "how do I use this," or "I don't know where to start," and any time you notice you've built something technically correct but confusing to navigate. Do NOT use for single-step tasks or short two-step tasks where the second step is trivial and needs no human reaction in between.
 ---
 
 # Guided Pipeline
@@ -16,7 +16,9 @@ every file to figure out what happened or what's next.
 
 ## When to Use
 
-- A task has more than one step, with a follow-on action after each.
+- A task has three or more steps, each with a follow-on action.
+- A task has exactly two steps, but the human needs to react to the first
+  step's output before the second can safely run.
 - You're designing a system with phases, stages, or checkpoints.
 - The user asks "what do I do next," "how do I use this," or "I don't know
   where to start."
@@ -25,7 +27,12 @@ every file to figure out what happened or what's next.
 - You're building, running, or documenting a pipeline, agent workflow, or
   task breakdown that a human needs to follow, not just an AI executing
   silently.
-- **Do NOT use** for single-step tasks with no follow-on action: there's
+- A task that started single-step or short two-step grows a real follow-on
+  action partway through. Re-check against this list at that point rather
+  than assuming the original judgment still holds; scope growing mid-task is
+  common and the trigger decision isn't a one-time thing.
+- **Do NOT use** for single-step tasks, or short two-step tasks where the
+  second step is trivial and needs no human reaction in between: there's
   nothing to report a trajectory against.
 
 ## Core Process
