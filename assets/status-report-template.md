@@ -5,6 +5,11 @@
 of the pipeline. This is what Gut Check compares against at the end — omit
 this field on every step after Step 1.]
 
+**Goal anchor amendment (only on the step right after the human expands scope):**
+[Quote the human's added ask verbatim. Gut Check now compares against the
+original anchor plus every amendment, not the original alone. Omit this
+field entirely unless the human just explicitly asked for more scope.]
+
 **What just happened:**
 [Plain-language description. No file paths, function names, or jargon unless the
 user is technical and it's genuinely the clearest way to say it.]
